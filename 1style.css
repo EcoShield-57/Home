@@ -1,0 +1,418 @@
+*{
+    box-sizing: border-box;
+    font-family:gilroy;
+}
+body {
+    background-image: 
+        url(hand_earth.png),
+        linear-gradient(180deg, #A9D8DD 0%, #92C9D1 100%);
+
+        background-position: 50% 100px, 0 0; 
+        background-size: 1700px auto, cover;
+        background-repeat: no-repeat, no-repeat;
+}
+nav{
+    text-align: center;
+    padding-bottom: 50px;
+    width: 100%;
+    transform: translate(0%, -90%);
+    font-weight: bold;
+}
+nav>a{
+    font-family: Arial;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #4ca7a7;
+    width: 30px;
+    border-radius: 10px;
+    transition: 0.4s ease-in-out;
+}
+nav a:hover {
+   background-color: rgb(36, 129, 129);
+   color: rgb(217, 247, 217);
+   font-size: 18px;
+   padding-left: 10px;
+   position: relative;
+   top: 5px;
+}
+header h1 {
+    color: rgb(142, 25, 226);
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+p+button {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    left: auto;
+}
+.lo{
+    text-align: right;
+    position: relative;
+    bottom: 105px;
+    right: 20px;
+}
+h2 a{
+    font-size: 30px;
+    transition: 0.3s ease-in-out;
+    border-radius: 20px;
+    color: #386e70;
+}
+h2 a:hover {
+    color: rgb(206, 237, 236);
+    background-color: rgb(99, 161, 160);
+    padding-top: 5PX;
+    padding-RIGHT: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+
+    border-style: dashed;
+    font-size: 30px;
+}
+.glo-temp{
+    background-image: url(hot_earth.jpg);
+    background-size: 700px;
+    background-position-y: -30px;
+    background-position-x:right ;
+    background-repeat: no-repeat;
+    width: 50%;
+    max-width: 600px;
+    height: 15%;
+    min-height: 150px;
+    border-radius: 25px;
+    margin-left: 6%;
+    transition: all 0.3s ease;
+}
+.glo-temp h1{
+    color: #d1c42e;
+}
+
+.glo-temp p{
+    color: antiquewhite;
+    padding-left: 14px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    text-shadow: 0 1px 1px #000000;
+}
+
+
+.glo-temp:hover {
+    background-color: #fff5f5; /* Light warm tint */
+    border-color: #ff4500;    /* Fire orange border */
+    transform: translateY(-5px); /* Lifts the card up */
+    box-shadow: 0 10px 10px rgb(203, 93, 10); /* Adds depth */
+}
+.glo-temp:active{
+    transform: translateY(1px);
+    box-shadow: 0 10px 10px rgb(246, 124, 31);
+}
+
+.sea-l{
+    background-image: url(Wave.png);
+    background-size: 600px; /* Ensures the image covers the entire element area */
+    background-position-y: -24px; /* Centers the image within the element */
+    background-position-x:right ; /* Centers the image within the element */
+    background-repeat: no-repeat;
+    width: 50%;
+    max-width: 600px;
+    height: 15%;
+    min-height: 150px;
+    border-radius: 25px;
+    margin-left: 6%;
+    transition: all 0.3s ease;
+}
+.sea-l h1{
+    color: #57719a;
+}
+.sea-l p{
+    color: #8B9FBB;
+    padding-left: 14px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    text-shadow: 1px 1px 1px #000000;
+
+}
+.sea-l:hover {
+    background-color: #fff5f5; /* Light warm tint */
+    border-color: #ff4500;    /* Fire orange border */
+    transform: translateY(-5px); /* Lifts the card up */
+    box-shadow: 0 10px 10px rgb(4, 80, 181); /* Adds depth */
+}
+.sea-l:active{
+    transform: translateY(1px);
+    box-shadow: 0 10px 10px rgba(0, 213, 255, 0.908);
+}
+.gla{
+    background-image: url(ice.png);
+    background-size: 980px; /* Ensures the image covers the entire element area */
+    background-position-y: center; /* Centers the image within the element */
+    background-position-x:-290px; /* Centers the image within the element */
+    background-repeat: no-repeat;
+    width: 50%;
+    max-width: 600px;
+    height: 15%;
+    min-height: 150px;
+    border-radius: 25px;
+    margin-left: 6%;
+    transition: all 0.3s ease;
+}
+.gla h1{
+    color: #b0c3cd;
+}
+.gla p{
+    color: #B0CED8;
+    padding-left: 14px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    text-shadow: 1px 1px 1px #000000;
+
+}
+.gla:hover {
+    background-color: #fff5f5; /* Light warm tint */
+    border-color: #ff4500;    /* Fire orange border */
+    transform: translateY(-5px); /* Lifts the card up */
+    box-shadow: 0 10px 10px rgb(0, 203, 214); /* Adds depth */
+}
+.gla:active{
+    transform: translateY(1px);
+    box-shadow: 0 10px 10px rgba(129, 249, 251, 0.908);
+}
+.aqi{
+    background-image: url(dust.png);
+    background-size: 1180px; /* Ensures the image covers the entire element area */
+    background-position-y: center; /* Centers the image within the element */
+    background-position-x:-500px; /* Centers the image within the element */
+    background-repeat: no-repeat;
+    width: 50%;
+    max-width: 600px;
+    height: 15%;
+    min-height: 150px;
+    border-radius: 25px;
+    margin-left: 6%;
+    transition: all 0.3s ease;
+}
+.aqi h1{
+    color: #ffbf34d2;
+}
+.aqi p{
+    color: #e8c566d5;
+    padding-left: 14px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    text-shadow: 1px 1px 1px #000000;
+
+}
+.aqi:hover {
+    background-color: #fff5f5; /* Light warm tint */
+    border-color: #ff4500;    /* Fire orange border */
+    transform: translateY(-5px); /* Lifts the card up */
+    box-shadow: 0 10px 10px rgb(145, 94, 0); /* Adds depth */
+}
+.aqi:active{
+    transform: translateY(1px);
+    box-shadow: 0 10px 10px rgb(188, 119, 0);
+}
+.df{
+    background-image: url(Deforestation.png);
+    background-size: 1180px; /* Ensures the image covers the entire element area */
+    background-position-y: center; /* Centers the image within the element */
+    background-position-x:-500px; /* Centers the image within the element */
+    background-repeat: no-repeat;
+    width: 50%;
+    max-width: 600px;
+    height: 15%;
+    min-height: 150px;
+    border-radius: 25px;
+    margin-left: 6%;
+    transition: all 0.3s ease;
+}
+.df h1{
+    color: #B68B5E;
+}
+.df p{
+    color: #C8A47C;
+    padding-left: 14px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    text-shadow: 1px 1px 1px #000000;
+
+}
+.df:hover {
+    background-color: #fff5f5; /* Light warm tint */
+    border-color: #ff4500;    /* Fire orange border */
+    transform: translateY(-5px); /* Lifts the card up */
+    box-shadow: 0 10px 10px rgb(64, 42, 0); /* Adds depth */
+}
+.df:active{
+    transform: translateY(1px);
+    box-shadow: 0 10px 10px rgb(147, 98, 15);
+}
+
+/* 🏔️ Glacier Melt(__Ton/yr) */
+ /* #top{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.para{
+    width: 80%;
+    background-color: #1b929f55;
+    margin: 2% 10%;
+    font-size: large;
+    position: absolute;
+}
+.para h2{    
+    font-weight: bold;
+} */
+
+/* Container: 3 columns on desktop, 1 on mobile */
+#top {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    /* background: #f0f2f5;  */
+    font-family: 'Inter', sans-serif;
+}
+
+.para {
+    background: #a7d7dc8d;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.5s ease, box-shadow 0.9s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.para:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: #007AFF; 
+}
+
+.para h2 {
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+.para p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #000000;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.para p:last-child {
+    margin-bottom: 0;
+}
+
+
+#data {
+    display: flex;
+    flex-direction: column; /* Stacks the rows vertically */
+    gap: 10px;
+    color: #1f4145;
+    background-color: #5c979792;
+    border: 2px solid rgb(70, 136, 125);
+    border-radius: 20px;
+    width: 80%;
+    padding-bottom: 20px;
+    margin: 10%;
+}
+#data h2{
+    display: flex;
+    justify-content: center;
+    color:#2a6a71;
+    font-size: 50px;
+}
+.row {
+    display: flex; /* Aligns the <h3>s or <p>s horizontally */
+    justify-content: space-between; /* Spreads them across the row */
+    border-bottom: 1px solid #49544b; /* Optional: adds a divider line */
+    padding: 10px;
+
+}
+.row h3, .row p {
+    flex: 1; /*Forces each item to take up exactly 1/3 of the row */ 
+    margin: 0;
+    text-align: left;
+}
+.row h3{
+    font-weight: bold;
+    font-size: 30px;
+}
+.row p{
+    /* font-weight: bold; */
+    font-size: 30px;
+}
+
+/* login code */
+.login-container{
+    position: relative;
+    height: 100dvh;
+    width: auto;
+}
+
+.login-container > h2{
+    position: absolute;
+    top: 0%;
+    left: 5%;
+}
+
+form{
+    background-color: rgba(255, 235, 205, 0.547);
+    height: auto;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 40px;
+    border-radius: 20px;
+
+} 
+
+.input-group {
+    margin-bottom: 15px;
+    padding: 15px 30px;
+    font-family: Arial;
+    background: linear-gradient(90deg, rgba(171, 217, 223, 1) 100%, rgba(163, 212, 218, 1) 100%);
+    border-radius: 10px;
+}
+
+.input-group +button{
+    margin-top: 15px;
+    margin-left: 40%;
+    font-size: large;
+    color: rgb(25, 66, 103);
+    background-color: #8effdde0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-footer{
+    padding-top: 30px;
+}
+span a{
+    padding: 5px;
+}

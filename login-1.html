@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Optional: Link to a CSS file for styling -->
+    <link rel="stylesheet" href="1style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <!-- The form action attribute specifies where to send the form-data when a form is submitted. -->
+        <!-- The method="POST" attribute sends form data securely in the HTTP body. -->
+        <form action="action_page.php" method="POST">
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <!-- The 'required' attribute ensures the field must be filled out -->
+                <input type="text" id="username" name="username" placeholder="Enter Username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            </div>
+
+            <button type="submit">Login</button>
+            
+            <div class="form-footer">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
