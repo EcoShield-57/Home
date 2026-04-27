@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- Optional: Link to a CSS file for styling -->
-    <link rel="stylesheet" href="1style.css">
+  <title>Auth System</title>
+  <link rel="stylesheet" href="stylelogin.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <!-- The form action attribute specifies where to send the form-data when a form is submitted. -->
-        <!-- The method="POST" attribute sends form data securely in the HTTP body. -->
-        <form action="action_page.php" method="POST">
-            
-            <div class="input-group">
-                <label for="username">Username</label>
-                <!-- The 'required' attribute ensures the field must be filled out -->
-                <input type="text" id="username" name="username" placeholder="Enter Username" required>
-            </div>
+<div class="container">
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter Password" required>
-            </div>
+  <!-- SIGNUP -->
+  <h2>Signup</h2>
+  <input type="email" id="signupEmail" placeholder="Enter Email"><br>
+  <input type="password" id="signupPassword" placeholder="Enter Password"><br>
+  <button onclick="signup()">Signup</button>
 
-            <button type="submit">Login</button>
-            
-            <div class="form-footer">
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-        </form>
-    </div>
+  <hr>
+
+  <!-- LOGIN -->
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Enter Email"><br>
+  <input type="password" id="password" placeholder="Enter Password"><br>
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+
+  <!-- EXTRA -->
+  <div id="extra" style="display:none;">
+    <h3>Select Your Details</h3>
+
+    <select id="country">
+      <option value="">Select Country</option>
+      <option value="India">India</option>
+      <option value="USA">USA</option>
+    </select>
+
+    <select id="state">
+      <option value="">Select State</option>
+      <option value="Bihar">Bihar</option>
+      <option value="Delhi">Delhi</option>
+    </select>
+
+    <button onclick="saveDetails()">Continue</button>
+  </div>
+
+</div>
+
+<script src="scriptlogin.js"></script>
 </body>
 </html>
