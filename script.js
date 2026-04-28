@@ -2,7 +2,6 @@ let userEmail = "";
 
 /* =========================
    SIGNUP
-========================= */
 function signup() {
   let email = document.getElementById("signupEmail").value.trim();
   let password = document.getElementById("signupPassword").value.trim();
@@ -36,7 +35,6 @@ function signup() {
 
 /* =========================
    LOGIN
-========================= */
 function login() {
   let email = document.getElementById("email").value.trim();
   let password = document.getElementById("password").value.trim();
@@ -76,7 +74,6 @@ function login() {
 
 /* =========================
    SAVE DETAILS (Country + State)
-========================= */
 function saveDetails() {
   let country = document.getElementById("country").value;
   let state = document.getElementById("state").value;
@@ -110,3 +107,28 @@ function saveDetails() {
     alert("Data save nahi hua");
   });
 }
+function login() {
+    fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText = data.message;
+    });
+}
+
+
+// hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
