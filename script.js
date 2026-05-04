@@ -1,5 +1,5 @@
 // ogin/sign-up switch 
-function toggleForm() {  ddfd
+function toggleForm() {
     const login = document.querySelector('.login');
     const signup = document.querySelector('.signup');
     
