@@ -1,9 +1,8 @@
-// Login/Sign-up switch 
+// ================= FORM TOGGLE =================
 function toggleForm() {
-    const login = document.querySelector('.login');
-    const signup = document.querySelector('.signup');
-    
-    // Ensure display isn't empty on first click
+    const login = document.querySelector(".login");
+    const signup = document.querySelector(".signup");
+
     if (login.style.display === "none") {
         login.style.display = "block";
         signup.style.display = "none";
@@ -13,9 +12,12 @@ function toggleForm() {
     }
 }
 
+// ================= BACKEND URL =================
+const API_URL = "https://home-8i9j.onrender.com";
+
 let userEmail = "";
 
-// SIGNUP
+// ================= SIGNUP =================
 function signup() {
     let email = document.getElementById("signupEmail").value.trim();
     let password = document.getElementById("signupPassword").value.trim();
@@ -25,22 +27,42 @@ function signup() {
         return;
     }
 
-    fetch("http://127.0.0.1:5000/signup", {
+    fetch(`${API_URL}/signup`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, password: password })
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
     })
-    .then(res => res.json())
-    .then(data => {
+    .then(async (res) => {
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message || "Signup failed");
+        }
+
+        return data;
+    })
+    .then((data) => {
         alert(data.message);
+
+        // Clear fields
+        document.getElementById("signupEmail").value = "";
+        document.getElementById("signupPassword").value = "";
+
+        // Switch to login form
+        toggleForm();
     })
-    .catch(err => {
+    .catch((err) => {
         console.error("Signup Error:", err);
-        alert("Signup failed. Check backend.");
+        alert(err.message);
     });
 }
 
-// LOGIN
+// ================= LOGIN =================
 function login() {
     let email = document.getElementById("email").value.trim();
     let password = document.getElementById("password").value.trim();
@@ -50,58 +72,90 @@ function login() {
         return;
     }
 
-    fetch("http://127.0.0.1:5000/login", {
+    fetch(`${API_URL}/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, password: password })
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
     })
-    .then(res => res.json())
-    .then(data => {
+    .then(async (res) => {
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message || "Login failed");
+        }
+
+        return data;
+    })
+    .then((data) => {
         document.getElementById("msg").innerText = data.message;
+
         if (data.message === "Login successful") {
             userEmail = email;
+
+            // Save email in localStorage
+            localStorage.setItem("userEmail", email);
+
+            // Show extra section
             document.getElementById("extra").style.display = "block";
         }
     })
-    .catch(err => {
+    .catch((err) => {
         console.error("Login Error:", err);
-        alert("Login failed. Backend connect nahi ho raha.");
+        alert(err.message);
     });
 }
 
-// SAVE DETAILS
+// ================= SAVE DETAILS =================
 function saveDetails() {
     let country = document.getElementById("country").value;
     let state = document.getElementById("state").value;
+
+    // Get email from memory/localStorage
+    userEmail = localStorage.getItem("userEmail");
 
     if (!country || !state) {
         alert("Please select country and state");
         return;
     }
 
-    fetch("http://127.0.0.1:5000/save-details", {
+    fetch(`${API_URL}/save-details`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             email: userEmail,
             country: country,
             state: state
         })
     })
-    .then(res => res.json())
-    .then(data => {
+    .then(async (res) => {
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message || "Save failed");
+        }
+
+        return data;
+    })
+    .then((data) => {
         alert(data.message);
     })
-    .catch(err => {
+    .catch((err) => {
         console.error("Save Error:", err);
-        alert("Data save nahi hua");
+        alert(err.message);
     });
 }
 
-// Hamburger menu
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
+// ================= HAMBURGER MENU =================
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
 });
