@@ -1,108 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
+// ================= BACKEND URL =================
+const API_URL = "https://home-8i9j.onrender.com";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// ================= ELEMENTS =================
+const loginBox = document.getElementById("loginBox");
 
-    <title>Login / Signup</title>
+const signupBox = document.getElementById("signupBox");
 
-    <link rel="stylesheet" href="login_style.css">
-</head>
+const showSignup = document.getElementById("showSignup");
 
-<body>
+const showLogin = document.getElementById("showLogin");
 
-    <div class="auth-card">
+const loginForm = document.getElementById("loginForm");
 
-        <!-- ================= LOGIN BOX ================= -->
-        <div class="box login" id="loginBox">
+const signupForm = document.getElementById("signupForm");
 
-            <form id="loginForm">
+// ================= TOGGLE FORMS =================
+showSignup.addEventListener("click", function(event) {
 
-                <h2>Welcome Back</h2>
+    event.preventDefault();
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    required
-                >
+    loginBox.style.display = "none";
 
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    required
-                >
+    signupBox.style.display = "block";
+});
 
-                <button type="submit" class="btn">
-                    Sign In
-                </button>
+showLogin.addEventListener("click", function(event) {
 
-                <p id="msg"></p>
+    event.preventDefault();
 
-                <p>
-                    New here?
-                    <a href="#" id="showSignup">
-                        Create account
-                    </a>
-                </p>
+    signupBox.style.display = "none";
 
-            </form>
+    loginBox.style.display = "block";
+});
 
-        </div>
+// ================= SIGNUP =================
+signupForm.addEventListener("submit", async function(event) {
 
-        <!-- ================= SIGNUP BOX ================= -->
-        <div
-            class="box signup"
-            id="signupBox"
-            style="display: none;"
-        >
+    event.preventDefault();
 
-            <form id="signupForm">
+    let email = document.getElementById("signupEmail").value.trim();
 
-                <h2>Create Account</h2>
+    let password = document.getElementById("signupPassword").value.trim();
 
-                <input
-                    type="text"
-                    id="fullname"
-                    placeholder="Full Name"
-                    required
-                >
+    if (!email || !password) {
 
-                <input
-                    type="email"
-                    id="signupEmail"
-                    placeholder="Email"
-                    required
-                >
+        alert("Please fill all fields");
 
-                <input
-                    type="password"
-                    id="signupPassword"
-                    placeholder="Password"
-                    required
-                >
+        return;
+    }
 
-                <button type="submit" class="btn">
-                    Sign Up
-                </button>
+    try {
 
-                <p>
-                    Already have an account?
-                    <a href="#" id="showLogin">
-                        Sign In
-                    </a>
-                </p>
+        const response = await fetch(
+            `${API_URL}/signup`,
+            {
+                method: "POST",
 
-            </form>
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-        </div>
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
 
-    </div>
+        const data = await response.json();
 
-    <script src="script.js"></script>
+        alert(data.message);
 
-</body>
+        // Switch to login form
+        signupBox.style.display = "none";
 
-</html>
+        loginBox.style.display = "block";
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Signup failed");
+    }
+});
+
+// ================= LOGIN =================
+loginForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    let email = document.getElementById("email").value.trim();
+
+    let password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+
+        alert("Please fill all fields");
+
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/login`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        document.getElementById("msg").innerText = data.message;
+
+        if (data.message === "Login successful") {
+
+            // Save email
+            localStorage.setItem("userEmail", email);
+
+            // Redirect
+            window.location.href = "home.html";
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Login failed");
+    }
+});
