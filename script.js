@@ -1,24 +1,29 @@
-// ================= FORM TOGGLE =================
-function toggleForm() {
-    const login = document.querySelector(".login");
-    const signup = document.querySelector(".signup");
-
-    if (login.style.display === "none") {
-        login.style.display = "block";
-        signup.style.display = "none";
-    } else {
-        login.style.display = "none";
-        signup.style.display = "block";
-    }
-}
-
 // ================= BACKEND URL =================
 const API_URL = "https://home-8i9j.onrender.com";
 
 let userEmail = "";
 
+// ================= FORM TOGGLE =================
+function toggleForm() {
+
+    const loginBox = document.querySelector(".login");
+    const signupBox = document.querySelector(".signup");
+
+    if (loginBox.style.display === "none") {
+        loginBox.style.display = "block";
+        signupBox.style.display = "none";
+    } else {
+        loginBox.style.display = "none";
+        signupBox.style.display = "block";
+    }
+}
+
 // ================= SIGNUP =================
-function signup() {
+function signup(event) {
+
+    // Prevent page refresh
+    event.preventDefault();
+
     let email = document.getElementById("signupEmail").value.trim();
     let password = document.getElementById("signupPassword").value.trim();
 
@@ -38,6 +43,7 @@ function signup() {
         })
     })
     .then(async (res) => {
+
         const data = await res.json();
 
         if (!res.ok) {
@@ -47,23 +53,29 @@ function signup() {
         return data;
     })
     .then((data) => {
+
         alert(data.message);
 
-        // Clear fields
+        // Clear signup fields
         document.getElementById("signupEmail").value = "";
         document.getElementById("signupPassword").value = "";
 
-        // Switch to login form
+        // Go back to login form
         toggleForm();
     })
     .catch((err) => {
+
         console.error("Signup Error:", err);
         alert(err.message);
     });
 }
 
 // ================= LOGIN =================
-function login() {
+function login(event) {
+
+    // Prevent page refresh
+    event.preventDefault();
+
     let email = document.getElementById("email").value.trim();
     let password = document.getElementById("password").value.trim();
 
@@ -83,6 +95,7 @@ function login() {
         })
     })
     .then(async (res) => {
+
         const data = await res.json();
 
         if (!res.ok) {
@@ -92,30 +105,35 @@ function login() {
         return data;
     })
     .then((data) => {
+
         document.getElementById("msg").innerText = data.message;
 
         if (data.message === "Login successful") {
+
             userEmail = email;
 
-            // Save email in localStorage
+            // Save email in browser
             localStorage.setItem("userEmail", email);
 
-            // Show extra section
-            document.getElementById("extra").style.display = "block";
+            // Redirect after login
+            window.location.href = "home.html";
         }
     })
     .catch((err) => {
+
         console.error("Login Error:", err);
         alert(err.message);
     });
 }
 
 // ================= SAVE DETAILS =================
-function saveDetails() {
+function saveDetails(event) {
+
+    event.preventDefault();
+
     let country = document.getElementById("country").value;
     let state = document.getElementById("state").value;
 
-    // Get email from memory/localStorage
     userEmail = localStorage.getItem("userEmail");
 
     if (!country || !state) {
@@ -135,6 +153,7 @@ function saveDetails() {
         })
     })
     .then(async (res) => {
+
         const data = await res.json();
 
         if (!res.ok) {
@@ -144,9 +163,11 @@ function saveDetails() {
         return data;
     })
     .then((data) => {
+
         alert(data.message);
     })
     .catch((err) => {
+
         console.error("Save Error:", err);
         alert(err.message);
     });
@@ -156,6 +177,10 @@ function saveDetails() {
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 
-hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-});
+if (hamburger) {
+
+    hamburger.addEventListener("click", () => {
+
+        navLinks.classList.toggle("active");
+    });
+}
