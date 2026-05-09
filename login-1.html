@@ -1,34 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"><title>Login/Sign Up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+
     <link rel="stylesheet" href="login_style.css">
 </head>
+
 <body>
-    <div class="auth-card" id="authCard">
-    <!-- Login Form -->
-        <div class="box login">
-            <form action="#">
-                <h2>Welcome Back</h2>
-                <input type="email" name="email" placeholder="Email" autocomplete="username" required>
-                <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
-                <button type="submit" class="btn">Sign In</button>
-                <p>New here? <a href="#" onclick="toggleForm()">Create account</a></p>
+
+    <div class="auth-card">
+
+        <!-- LOGIN -->
+        <div class="box" id="loginBox">
+
+            <h2>Welcome Back</h2>
+
+            <form id="loginForm">
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit" class="btn">
+                    Sign In
+                </button>
+
             </form>
+
+            <p id="msg"></p>
+
+            <p>
+                New here?
+                <a href="#" id="createAccount">
+                    Create account
+                </a>
+            </p>
+
         </div>
 
-        <!-- Signup Form -->
-        <div class="box signup">
-            <form action="#">
-                <h2>Get Started</h2>
-                <input type="text" name="fullname" placeholder="Full Name" autocomplete="name" required>
-                <input type="email" name="email" placeholder="Email" autocomplete="username" required>
-                <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
-                <button type="submit" class="btn">Sign Up</button>
-                <p>Already have an account? <a href="#" onclick="toggleForm()">Sign in</a></p>
+        <!-- SIGNUP -->
+        <div
+            class="box"
+            id="signupBox"
+            style="display: none;"
+        >
+
+            <h2>Create Account</h2>
+
+            <form id="signupForm">
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit" class="btn">
+                    Sign Up
+                </button>
+
             </form>
+
+            <p>
+                Already have an account?
+                <a href="#" id="backLogin">
+                    Sign In
+                </a>
+            </p>
+
         </div>
+
     </div>
+
     <script src="script.js"></script>
+
 </body>
+
 </html>
