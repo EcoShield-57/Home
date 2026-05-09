@@ -1,3 +1,5 @@
+alert("Script Connected");
+
 const API_URL = "https://home-8i9j.onrender.com";
 
 // ================= ELEMENTS =================
