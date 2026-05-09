@@ -1,86 +1,129 @@
-// Toggle Login / Signup
-function toggleForm() {
-    const loginBox = document.querySelector('.login');
-    const signupBox = document.querySelector('.signup');
+const API_URL = "https://home-8i9j.onrender.com";
 
-    if (loginBox.style.display === "none") {
-        loginBox.style.display = "block";
-        signupBox.style.display = "none";
-    } else {
-        loginBox.style.display = "none";
-        signupBox.style.display = "block";
-    }
-}
+// ================= ELEMENTS =================
+const loginBox = document.getElementById("loginBox");
 
-// Default: show login first
-document.querySelector('.signup').style.display = "none";
+const signupBox = document.getElementById("signupBox");
 
-let userEmail = "";
+const createAccount = document.getElementById("createAccount");
+
+const backLogin = document.getElementById("backLogin");
+
+// ================= TOGGLE =================
+createAccount.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    loginBox.style.display = "none";
+
+    signupBox.style.display = "block";
+});
+
+backLogin.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    signupBox.style.display = "none";
+
+    loginBox.style.display = "block";
+});
 
 // ================= SIGNUP =================
-document.querySelector('.signup form').addEventListener('submit', function(e) {
-    e.preventDefault();
+document.getElementById("signupForm")
 
-    let email = this.querySelector('input[name="email"]').value.trim();
-    let password = this.querySelector('input[name="password"]').value.trim();
+.addEventListener("submit", async function(event) {
 
-    if (!email || !password) {
-        alert("Please enter email and password");
-        return;
-    }
+    event.preventDefault();
 
-    fetch("http://127.0.0.1:5000/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
+    const email = document
+        .getElementById("signupEmail")
+        .value
+        .trim();
+
+    const password = document
+        .getElementById("signupPassword")
+        .value
+        .trim();
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/signup`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
+
+        const data = await response.json();
+
         alert(data.message);
-    })
-    .catch(err => {
-        console.error("Signup Error:", err);
-        alert("Signup failed. Backend check karo.");
-    });
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Signup failed");
+    }
 });
 
 // ================= LOGIN =================
-document.querySelector('.login form').addEventListener('submit', function(e) {
-    e.preventDefault();
+document.getElementById("loginForm")
 
-    let email = this.querySelector('input[name="email"]').value.trim();
-    let password = this.querySelector('input[name="password"]').value.trim();
+.addEventListener("submit", async function(event) {
 
-    if (!email || !password) {
-        alert("Please enter email and password");
-        return;
-    }
+    event.preventDefault();
 
-    fetch("http://127.0.0.1:5000/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        alert(data.message);
+    const email = document
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
+    const password = document
+        .getElementById("loginPassword")
+        .value
+        .trim();
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/login`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        document.getElementById("msg").innerText =
+            data.message;
 
         if (data.message === "Login successful") {
-            userEmail = email;
+
+            window.location.href = "home.html";
         }
-    })
-    .catch(err => {
-        console.error("Login Error:", err);
-        alert("Login failed. Backend connect nahi ho raha.");
-    });
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Login failed");
+    }
 });
