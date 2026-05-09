@@ -1,145 +1,108 @@
-// ================= BACKEND URL =================
-const API_URL = "https://home-8i9j.onrender.com";
+<!DOCTYPE html>
+<html lang="en">
 
-// ================= FORM TOGGLE =================
-function toggleForm() {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    const loginBox = document.getElementById("loginBox");
+    <title>Login / Signup</title>
 
-    const signupBox = document.getElementById("signupBox");
+    <link rel="stylesheet" href="login_style.css">
+</head>
 
-    if (loginBox.style.display === "none") {
+<body>
 
-        loginBox.style.display = "block";
+    <div class="auth-card">
 
-        signupBox.style.display = "none";
+        <!-- ================= LOGIN BOX ================= -->
+        <div class="box login" id="loginBox">
 
-    } else {
+            <form id="loginForm">
 
-        loginBox.style.display = "none";
+                <h2>Welcome Back</h2>
 
-        signupBox.style.display = "block";
-    }
-}
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    required
+                >
 
-// ================= SIGNUP =================
-function signup(event) {
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                >
 
-    event.preventDefault();
+                <button type="submit" class="btn">
+                    Sign In
+                </button>
 
-    let email = document.getElementById("signupEmail").value.trim();
+                <p id="msg"></p>
 
-    let password = document.getElementById("signupPassword").value.trim();
+                <p>
+                    New here?
+                    <a href="#" id="showSignup">
+                        Create account
+                    </a>
+                </p>
 
-    if (!email || !password) {
+            </form>
 
-        alert("Please fill all fields");
+        </div>
 
-        return;
-    }
+        <!-- ================= SIGNUP BOX ================= -->
+        <div
+            class="box signup"
+            id="signupBox"
+            style="display: none;"
+        >
 
-    fetch(`${API_URL}/signup`, {
+            <form id="signupForm">
 
-        method: "POST",
+                <h2>Create Account</h2>
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Full Name"
+                    required
+                >
 
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Email"
+                    required
+                >
 
-    .then(async (res) => {
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Password"
+                    required
+                >
 
-        const data = await res.json();
+                <button type="submit" class="btn">
+                    Sign Up
+                </button>
 
-        if (!res.ok) {
-            throw new Error(data.message);
-        }
+                <p>
+                    Already have an account?
+                    <a href="#" id="showLogin">
+                        Sign In
+                    </a>
+                </p>
 
-        return data;
-    })
+            </form>
 
-    .then((data) => {
+        </div>
 
-        alert(data.message);
+    </div>
 
-        // Clear fields
-        document.getElementById("signupEmail").value = "";
+    <script src="script.js"></script>
 
-        document.getElementById("signupPassword").value = "";
+</body>
 
-        // Switch to login form
-        toggleForm();
-    })
-
-    .catch((err) => {
-
-        console.log(err);
-
-        alert(err.message);
-    });
-}
-
-// ================= LOGIN =================
-function login(event) {
-
-    event.preventDefault();
-
-    let email = document.getElementById("email").value.trim();
-
-    let password = document.getElementById("password").value.trim();
-
-    if (!email || !password) {
-
-        alert("Please fill all fields");
-
-        return;
-    }
-
-    fetch(`${API_URL}/login`, {
-
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-
-    .then(async (res) => {
-
-        const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message);
-        }
-
-        return data;
-    })
-
-    .then((data) => {
-
-        document.getElementById("msg").innerText = data.message;
-
-        // Save login email
-        localStorage.setItem("userEmail", email);
-
-        // Redirect page
-        window.location.href = "home.html";
-    })
-
-    .catch((err) => {
-
-        console.log(err);
-
-        alert(err.message);
-    });
-}
+</html>
