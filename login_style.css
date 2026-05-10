@@ -16,7 +16,7 @@ body {
     background: #7ebbbab5; 
     padding: 30px; 
     border-radius: 12px; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    box-shadow: 5px 10px 25px rgba(21, 170, 150, 0.389); 
     width: 100%; 
     max-width: 400px; 
     position: relative; 
@@ -76,4 +76,3 @@ a {
     text-decoration: none; 
     font-weight: 600; 
 }
-
