@@ -54,7 +54,8 @@ input:focus {
     width: 100%; 
     padding: 12px; 
     background: #29737c; 
-    color: white; border: none; 
+    color: white; 
+    border: none; 
     border-radius: 6px; 
     font-weight: bold; 
     cursor: pointer; 
@@ -76,6 +77,3 @@ a {
     font-weight: 600; 
 }
 
-.signup {
-    display : none;
-}    
