@@ -1,131 +1,29 @@
-alert("Script Connected");
-
-const API_URL = "https://home-8i9j.onrender.com";
-
-// ================= ELEMENTS =================
-const loginBox = document.getElementById("loginBox");
-
-const signupBox = document.getElementById("signupBox");
-
-const createAccount = document.getElementById("createAccount");
-
-const backLogin = document.getElementById("backLogin");
-
-// ================= TOGGLE =================
-createAccount.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    loginBox.style.display = "none";
-
-    signupBox.style.display = "block";
-});
-
-backLogin.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    signupBox.style.display = "none";
-
-    loginBox.style.display = "block";
-});
-
-// ================= SIGNUP =================
-document.getElementById("signupForm")
-
-.addEventListener("submit", async function(event) {
-
-    event.preventDefault();
-
-    const email = document
-        .getElementById("signupEmail")
-        .value
-        .trim();
-
-    const password = document
-        .getElementById("signupPassword")
-        .value
-        .trim();
+document.addEventListener('DOMContentLoaded', async () => {
+    const loginLink = document.getElementById('login-link');
+    const profileSection = document.getElementById('profile-section');
 
     try {
-
-        const response = await fetch(
-            `${API_URL}/signup`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            }
-        );
-
+        // 1. Ask the backend if the user is logged in
+        const response = await fetch('/api/check-auth'); // Replace with your actual backend URL
         const data = await response.json();
 
-        alert(data.message);
-
-    } catch (error) {
-
-        console.log(error);
-
-        alert("Signup failed");
-    }
-});
-
-// ================= LOGIN =================
-document.getElementById("loginForm")
-
-.addEventListener("submit", async function(event) {
-
-    event.preventDefault();
-
-    const email = document
-        .getElementById("loginEmail")
-        .value
-        .trim();
-
-    const password = document
-        .getElementById("loginPassword")
-        .value
-        .trim();
-
-    try {
-
-        const response = await fetch(
-            `${API_URL}/login`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            }
-        );
-
-        const data = await response.json();
-
-        document.getElementById("msg").innerText =
-            data.message;
-
-        if (data.message === "Login successful") {
-
-            window.location.href = "index.html";
+        // 2. data.isLoggedIn should be returned by your friend's backend
+        if (data.isLoggedIn) {
+            loginLink.style.display = 'none';
+            profileSection.style.display = 'block';
+        } else {
+            loginLink.style.display = 'block';
+            profileSection.style.display = 'none';
         }
-
     } catch (error) {
-
-        console.log(error);
-
-        alert("Login failed");
+        console.error("Backend connection failed:", error);
     }
 });
+
+function logout() {
+    // 3. Tell backend to clear the session/cookie
+    fetch('/api/logout', { method: 'POST' })
+        .then(() => {
+            window.location.href = "index.html"; // Redirect after logout
+        });
+}
