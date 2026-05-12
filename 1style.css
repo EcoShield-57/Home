@@ -22,14 +22,14 @@ body {
     padding-left: 10px;
     /* padding-bottom: 30px; */
 }
-.tophead > h2 >a{
+#f-user a{
     font-size: 30px;
     padding-right: 10px;
     transition: 0.3s ease-in-out;
     border-radius: 20px;
     color: #386e70;
 }
-.tophead > h2 >a:hover {
+#f-user a:hover {
     color: rgb(206, 237, 236);
     background-color: rgb(99, 161, 160);
     padding-top: 5PX;
@@ -115,19 +115,39 @@ body {
 }
 
 
+.holder{
+    background-color: #7ebbba46;
+    width: 60%;
+    max-width: 700px;
+    margin-left: 5%;
+    padding: 3%;
+    border-radius: 25px;
+}
+
+.holder > h1{
+    text-align: center;
+    font-weight: bolder;
+    color: #00676a;
+}
+
+.holder p{
+    font-size: larger;
+    font-weight: 800;
+    color: #00969b;
+    padding-bottom: 2%;
+}
+
 .glo-temp{
     background-image: url(hot_earth.jpg);
     background-size: 700px;
     background-position-y: -30px;
     background-position-x:right ;
     background-repeat: no-repeat;
-    width: 50%;
-    max-width: 600px;
     height: 15%;
     min-height: 150px;
     border-radius: 25px;
-    margin-left: 6%;
     transition: all 0.3s ease;
+    min-block-size: 150px;
 }
 .glo-temp h1{
     color: #d1c42e;
@@ -157,16 +177,13 @@ body {
 
 .sea-l{
     background-image: url(Wave.png);
-    background-size: 600px; /* Ensures the image covers the entire element area */
+    background-size: 630px; /* Ensures the image covers the entire element area */
     background-position-y: -24px; /* Centers the image within the element */
     background-position-x:right ; /* Centers the image within the element */
     background-repeat: no-repeat;
-    width: 50%;
-    max-width: 600px;
     height: 15%;
     min-height: 150px;
     border-radius: 25px;
-    margin-left: 6%;
     transition: all 0.3s ease;
 }
 .sea-l h1{
@@ -198,12 +215,9 @@ body {
     background-position-y: center; /* Centers the image within the element */
     background-position-x:-290px; /* Centers the image within the element */
     background-repeat: no-repeat;
-    width: 50%;
-    max-width: 600px;
     height: 15%;
     min-height: 150px;
     border-radius: 25px;
-    margin-left: 6%;
     transition: all 0.3s ease;
 }
 .gla h1{
@@ -235,12 +249,9 @@ body {
     background-position-y: center; /* Centers the image within the element */
     background-position-x:-500px; /* Centers the image within the element */
     background-repeat: no-repeat;
-    width: 50%;
-    max-width: 600px;
     height: 15%;
     min-height: 150px;
     border-radius: 25px;
-    margin-left: 6%;
     transition: all 0.3s ease;
 }
 .aqi h1{
@@ -272,12 +283,9 @@ body {
     background-position-y: center; /* Centers the image within the element */
     background-position-x:-500px; /* Centers the image within the element */
     background-repeat: no-repeat;
-    width: 50%;
-    max-width: 600px;
     height: 15%;
     min-height: 150px;
     border-radius: 25px;
-    margin-left: 6%;
     transition: all 0.3s ease;
 }
 .df h1{
