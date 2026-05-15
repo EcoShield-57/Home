@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = e.target.password.value;
 
         try {
-            const response = await fetch("https://home-3-bmtd.onrender.com", {
+            const response = await fetch("https://home-3-bmtd.onrender.com/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
