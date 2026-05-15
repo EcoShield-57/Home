@@ -1,29 +1,70 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const loginLink = document.getElementById('login-link');
-    const profileSection = document.getElementById('profile-section');
+document.addEventListener("DOMContentLoaded", () => {
 
-    try {
-        // 1. Ask the backend if the user is logged in
-        const response = await fetch('/api/check-auth'); // Replace with your actual backend URL
-        const data = await response.json();
+    // ================= SIGNUP =================
+    document.querySelector(".signup form").addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        // 2. data.isLoggedIn should be returned by your friend's backend
-        if (data.isLoggedIn) {
-            loginLink.style.display = 'none';
-            profileSection.style.display = 'block';
-        } else {
-            loginLink.style.display = 'block';
-            profileSection.style.display = 'none';
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        try {
+            const response = await fetch("https://sachin-backend-c4wk.onrender.com/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            alert(data.message);
+
+        } catch (error) {
+            console.error(error);
+            alert("Signup failed");
         }
-    } catch (error) {
-        console.error("Backend connection failed:", error);
-    }
-});
+    });
 
-function logout() {
-    // 3. Tell backend to clear the session/cookie
-    fetch('/api/logout', { method: 'POST' })
-        .then(() => {
-            window.location.href = "index.html"; // Redirect after logout
-        });
-}
+    // ================= LOGIN =================
+    document.querySelector(".login form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        try {
+            const response = await fetch("https://sachin-backend-c4wk.onrender.com/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.message === "Login successful") {
+
+                alert("Login successful");
+
+                // ✅ Home page open
+                window.location.href = "index.html";
+
+            } else {
+                alert(data.message);
+            }
+
+        } catch (error) {
+            console.error(error);
+            alert("Login failed");
+        }
+    });
+
+});
